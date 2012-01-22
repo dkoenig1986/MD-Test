@@ -14,7 +14,6 @@ public class AndroidOpenGlTutorialActivity extends GLGame {
 
 	@Override
 	public Screen getStartScreen() {
-		// TODO Auto-generated method stub
 		return new TriangleScreen(this);
 	}
 
@@ -44,14 +43,6 @@ public class AndroidOpenGlTutorialActivity extends GLGame {
 		@Override
 		public void present(float deltaTime) {
 			GL10 gl = glGraphics.getGl();
-			gl.glViewport(0, 0, glGraphics.getWidth(), glGraphics.getHeight());
-			gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-			gl.glMatrixMode(GL10.GL_PROJECTION);
-			gl.glLoadIdentity();
-			gl.glOrthof(0, 320, 0, 480, 1, -1);
-			gl.glColor4f(1, 0, 0, 1);
-			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-			gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
 			vertices.position(0);
 			gl.glVertexPointer(2, GL10.GL_FLOAT, VERTEX_SIZE, vertices);
 			vertices.position(2);
@@ -66,9 +57,22 @@ public class AndroidOpenGlTutorialActivity extends GLGame {
 
 		}
 
+		/**
+		 * only Called once while instantiating glSurface. So insert GL
+		 * parameters here which have not be set permanently this increases
+		 * performance
+		 */
 		@Override
 		public void resume() {
-			// TODO Auto-generated method stub
+			GL10 gl = glGraphics.getGl();
+			gl.glViewport(0, 0, glGraphics.getWidth(), glGraphics.getHeight());
+			gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+			gl.glMatrixMode(GL10.GL_PROJECTION);
+			gl.glLoadIdentity();
+			gl.glOrthof(0, 320, 0, 480, 1, -1);
+			gl.glColor4f(1, 0, 0, 1);
+			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+			gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
 
 		}
 
